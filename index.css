@@ -15,7 +15,7 @@ header {
 	width: 1000px;
 	height: 60px;
 	margin: -5px auto;
-	z-index: 10;
+	z-index: 100;
 }
 #top-logo {
 	float: left;
@@ -115,6 +115,9 @@ header {
 	padding: 30px 0;
 	border-top: 1px solid #eee;
 	border-bottom: 1px solid #eee;
+}
+#left-ul li {
+	overflow: hidden;
 }
 #org {
 	font-size: 20px;
@@ -232,6 +235,9 @@ header {
 	color: #999;
 	font-size: 14px;
 	line-height: 18px;
+	z-index: -1;
+	max-height: 54px;
+	overflow: hidden;
 }
 .repo-lang, .repo-star, .fo-group, .fo-add, .star-st, .star-fork, .star-update, .star-lang {
 	float: left;
@@ -249,9 +255,11 @@ header {
 	font-size: 20px;
 	font-weight: bold;
 }
-.rl-repo .repo-cuntri, .fo-countri {
+.rl-repo .repo-cuntri {
 	position: relative;
 	width: 700px;
+	overflow: auto;
+	min-height: 0px;
 }
 .rl-repo .repo-bo, .fo-bo {
 	margin-top: 20px;
@@ -264,8 +272,26 @@ header {
 
 
 /*followers模块*/
+/*.fo-main {
+	padding-left: 70px;
+}*/
+.fo-img {
+	float: left;
+	margin: 20px 0 -50px;
+	width: 50px;
+	height: 50px;
+	border-radius: 3px;
+}
+.fo-mcover {
+	position: relative;
+	height: 0;
+	left: 0;
+	width: 60px;
+	margin-right: 10px;
+}
 .fo-top {
-	display: block;width: 100%;
+	display: block;
+	width: 100%;
 	height: 32px;
 	margin: 0;
 	padding: 0;
@@ -278,17 +304,25 @@ header {
 }
 .fo-login {
 	color: #666;
-	width: 400px;
-	line-height: 35px;
+/*	width: 400px;
+*/	line-height: 35px;
 	float: left;
 }
 .fo-bo {
 	width: 500px;
 	height: 20px;
-	padding: 0 20px;
+	padding: 0 0px;
 }
-
-
+.fo-countri {
+	position: relative;
+	display: block;
+	width: 600px;
+	min-height: 30px;
+	padding-left: 68px;
+}
+.fo-bo {
+	padding-left: 68px;
+}
 
 
 

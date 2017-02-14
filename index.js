@@ -4,8 +4,13 @@ var user = new XMLHttpRequest(),
 	stars = new XMLHttpRequest(),
 	fers = new XMLHttpRequest(),
 	fersAll = new XMLHttpRequest(),
+	Jfers;
 	fersAll = Array();
-	JfersAll = Array();
+	JfersAll = Array();	
+	fing = new XMLHttpRequest(),
+	fingAll = new XMLHttpRequest(),
+	fingAll = Array();
+	JfingAll = Array();
 	img = Mselect("#left-img"),
 	rightList = Mselect(".right-list"),
 	rightMain = Mselect(".right-main"),
@@ -29,6 +34,7 @@ MenterInput(topInp, function() {
 		_mainShow.style.opacity = 0;
 		_mainShow.style.display = "none";
 		_mainCover.style.opacity = 1;
+		_mainCover.style.zIndex = 10;
 
 
 		MAjaxGET(user, "https://api.github.com/users/" + topInp.value, function() {
@@ -99,6 +105,9 @@ function AjaxTwo() {
 		_mainShow.style.display = "block";
 		setTimeout(function() {
 			_mainCover.style.marginBottom = "-280px";
+			setTimeout(function(){
+				_mainCover.style.zIndex = -1;
+			},500);
 			_mainShow.style.opacity = 1;
 		},500);
 	});
@@ -123,13 +132,13 @@ function AjaxTwo() {
 	// Followers
 	MAjaxGET(fers, u.followers_url, function() {
 		Jfers = JSON.parse(fers.responseText);
-		// AjaxFers();
-		// for (var i = Jfers.length - 1; i >= 0; i--) {
-		// 	Mselect("#fers").innerHTML += "<div class=\"fo-main\"><img class=\"fo-img\"></img><div class=\"fo-top\"><a class=\"fo-name\"></a><div class=\"fo-login\"></div></div><div class=\"fo-countri\"></div><div class=\"fo-bo\"><div class=\"lang-c\"></div><div class=\"fo-group\"></div><div class=\"lang-t\"></div><div class=\"fo-add\"></div></div></div>";
-		// }
-		// for (var i = Jfers.length - 1; i >= 0; i--) {
-		// 	MselectAll("#fers .fo-login")[i].innerHTML = Jfers[i].login;
-		// }
+		AjaxFers();
+	});
+
+	// Following
+	MAjaxGET(fing, u.url + "/following", function() {
+		Jfing = JSON.parse(fing.responseText);
+		AjaxFing();
 	});
 }
 
@@ -137,9 +146,60 @@ function AjaxTwo() {
 
 
 
+function AjaxFers() {
+	for (var i = Jfers.length - 1; i >= 0; i--) {
+		fersAll[i] = new XMLHttpRequest;
+		JfersAll[i] = Object();
+	}
+	for (var i = Jfers.length - 1; i >= 0; i--) {
+		Mselect("#fers").innerHTML += "<div class=\"fo-main\"><div class=\"fo-mcover\"><img class=\"fo-img\"></img></div><div class=\"fo-top\"><div class=\"fo-name\">fdasfsaf</div><div class=\"fo-login\"></div></div><div class=\"fo-countri\"></div><div class=\"fo-bo\"><div class=\"lang-c\"></div><div class=\"fo-group\"></div><div class=\"lang-t\"></div><div class=\"fo-add\"></div></div></div>"
+	}
+	Mindex(Jfers);
+	for (var i = Jfers.length - 1; i >= 0; i--) {
+		Jfers[i].getUrl = function(a) {
+			MAjaxGET(fersAll[a], this.url, function() {
+				JfersAll[a] = JSON.parse(fersAll[a].responseText);
+				MselectAll(".fo-img")[a].src =  JfersAll[a].avatar_url;
+				MselectAll(".fo-name")[a].innerHTML = JfersAll[a].name;	
+				MselectAll(".fo-login")[a].innerHTML = JfersAll[a].login;
+				MselectAll(".fo-countri")[a].innerHTML = JfersAll[a].bio;
+				MselectAll(".fo-group")[a].innerHTML = JfersAll[a].company;
+				MselectAll(".fo-add")[a].innerHTML = JfersAll[a].location;
+			})
+		}
+	}
+	for (var i = Jfers.length - 1; i >= 0; i--) {
+		Jfers[i].getUrl(i);
+	}
+}
 
 
-
+function AjaxFing() {
+	for (var i = Jfers.length - 1; i >= 0; i--) {
+		fingAll[i] = new XMLHttpRequest;
+		JfingAll[i] = Object();
+	}
+	for (var i = Jfing.length - 1; i >= 0; i--) {
+		Mselect("#fing").innerHTML += "<div class=\"fo-main\"><div class=\"fo-mcover\"><img class=\"fo-img\"></img></div><div class=\"fo-top\"><div class=\"fo-name\">fdasfsaf</div><div class=\"fo-login\"></div></div><div class=\"fo-countri\"></div><div class=\"fo-bo\"><div class=\"lang-c\"></div><div class=\"fo-group\"></div><div class=\"lang-t\"></div><div class=\"fo-add\"></div></div></div>"
+	}
+	Mindex(Jfing);
+	for (var i = Jfing.length - 1; i >= 0; i--) {
+		Jfing[i].getUrl = function(a) {
+			MAjaxGET(fingAll[a], this.url, function() {
+				JfingAll[a] = JSON.parse(fingAll[a].responseText);
+				MselectAll("#fing .fo-img")[a].src =  JfingAll[a].avatar_url;
+				MselectAll("#fing .fo-name")[a].innerHTML = JfingAll[a].name;	
+				MselectAll("#fing .fo-login")[a].innerHTML = JfingAll[a].login;
+				MselectAll("#fing .fo-countri")[a].innerHTML = JfingAll[a].bio;
+				MselectAll("#fing .fo-group")[a].innerHTML = JfingAll[a].company;
+				MselectAll("#fing .fo-add")[a].innerHTML = JfingAll[a].location;
+			})
+		}
+	}
+	for (var i = Jfing.length - 1; i >= 0; i--) {
+		Jfing[i].getUrl(i);
+	}
+}
 
 
 
@@ -161,47 +221,43 @@ function AjaxTwo() {
 
 
 // 三级Ajax－Followers
-function AjaxFers() {
-	for (var i = Jfers.length - 1; i >= 0; i--) {
-		fersAll[i] = new XMLHttpRequest;
-		JfersAll[i] = Object();
-	}
-	for (var i = Jfers.length - 1; i >= 0; i--) {
-		Mselect("#fers").innerHTML += "<div class=\"fo-main\"><img class=\"fo-img\"></img><div class=\"fo-top\"><div class=\"fo-name\">fdasfsaf</div><div class=\"fo-login\"></div></div><div class=\"fo-countri\"></div><div class=\"fo-bo\"><div class=\"fo-group\"></div><div class=\"fo-add\"></div></div></div>"
-	}
-	Mindex(fersAll);
-	Mindex(JfersAll);
-	for (var i = fersAll.length - 1; i >= 0; i--) {
-		var j = i;
-		fersAll[j].open("GET", Jfers[j].url, true);
-		fersAll[j].onreadystatechange = function() {
-			if (fersAll[j].readyState == 4) {
-				// alert(j);
-			}
-		}
-		fersAll[j].send();
-	}
-	for (var i = fersAll.length - 1; i >= 0; i--) {
-		var m = i;
-		JfersAll[m] = JSON.parse(fersAll[m].responseText);
-	}
-
-
-
-
-
-	// if (fersAll[j].) {}
-	// for (var i = fersAll.length - 1; i >= 0; i--) {
-	// 	var j = fersAll[i].index;
-	// 	JfersAll[j] = JSON.parse(fersAll[j].response);
+// function AjaxFing() {
+	// for (var i = Jfers.length - 1; i >= 0; i--) {
+	// 	fersAll[i] = new XMLHttpRequest;
+	// 	JfersAll[i] = Object();
 	// }
-	// for (var i = JfersAll.length - 1; i >= 0; i--) {
-	// 	JfersAll[i] = JSON.parse(JfersAll[i].responseText);
-	// }
-	for (var i = JfersAll.length - 1; i >= 0; i--) {
-		MselectAll("#fers .fo-name")[i] = JfersAll[i].name;
-	}
-}
+// 	Mindex(fersAll);
+// 	Mindex(JfersAll);
+// 	for (var i = fersAll.length - 1; i >= 0; i--) {
+// 		var j = i;
+// 		fersAll[j].open("GET", Jfers[j].url, true);
+// 		fersAll[j].onreadystatechange = function() {
+// 			if (fersAll[j].readyState == 4) {
+// 				// alert(j);
+// 			}
+// 		}
+// 		fersAll[j].send();
+// 	}
+// 	for (var i = fersAll.length - 1; i >= 0; i--) {
+// 		var m = i;
+// 		JfersAll[m] = JSON.parse(fersAll[m].responseText);
+// 	}
+
+
+
+
+// 	// if (fersAll[j].) {}
+// 	// for (var i = fersAll.length - 1; i >= 0; i--) {
+// 	// 	var j = fersAll[i].index;
+// 	// 	JfersAll[j] = JSON.parse(fersAll[j].response);
+// 	// }
+// 	// for (var i = JfersAll.length - 1; i >= 0; i--) {
+// 	// 	JfersAll[i] = JSON.parse(JfersAll[i].responseText);
+// 	// }
+// 	for (var i = JfersAll.length - 1; i >= 0; i--) {
+// 		MselectAll("#fers .fo-name")[i] = JfersAll[i].name;
+// 	}
+// }
 
 
 
