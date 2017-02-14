@@ -1,0 +1,312 @@
+*, body, ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 14px;
+	font-family: "arial","microsoftyahei";
+}
+header {
+	width: 100%;
+	background: #1e2327;
+	position: fixed;
+	overflow: hidden;
+}
+#top {
+	width: 1000px;
+	height: 60px;
+	margin: -5px auto;
+	z-index: 10;
+}
+#top-logo {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 8px;
+}
+#top-inp {
+	width: 300px;
+	height: 30px;
+	outline: none;
+	background: #393e41;
+	color: #fff;
+	border-radius: 3px;
+	border: none;
+	float: left;
+	margin: 15px 0;
+	padding: 0 10px;
+}
+.top-link {
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	font-size: 15px;
+	margin: 10px 15px;
+	color: #c5bda4;
+	cursor: pointer;
+	transition: all .2s;
+}
+.top-link:hover {
+	color: #fff;
+}
+#m-cover {
+	opacity: 0;
+	position: relative;
+	margin: 0 auto;
+	top: 250px;
+	margin-bottom: 250px;
+	border: 20px solid #ffb90f;
+	border-top-color: #ff8c00;
+	width: 240px;
+	height: 240px;
+	border-radius: 170px;
+	transform-origin: center center;
+	animation: ccc 2s 1000 linear;
+	transition: all .5s;
+	z-index: 8;
+}
+@keyframes ccc {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
+}
+#main {
+	display: none;
+	opacity: 0;
+	width: 980px;
+	margin: 0 auto;
+	padding-top: 75px;
+	transition: all .5s;
+}
+#main-left {
+	float: left;
+	width: 230px;
+	overflow: hidden;
+}
+#left-img {
+	width: 230px;
+	height: 230px;
+	border-radius: 5px;
+}
+#name {
+	font-size: 24px;
+	color: #333;
+}
+#login {
+	font-size: 18px;
+	color: #999999;
+}
+#left-butt {
+	width: 228px;
+	height: 34px;
+	margin: 50px 0 20px;
+	background: linear-gradient(to bottom,#fafafa,#efefef);
+	line-height: 34px;
+	border-radius: 5px;
+	border: 1px solid #d5d5d5;
+	text-align: center;
+	color: #333;
+	cursor: pointer;
+}
+#left-butt:hover {
+	background: linear-gradient(to bottom,#d5d5d5,#efefef);
+}
+#left-ul {
+	display: block;
+	overflow: hidden;
+	padding: 30px 0;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+#org {
+	font-size: 20px;
+	line-height: 30px;
+	padding: 0;
+}
+#org img {
+	display: inline-block;
+	width: 36px;
+	height: 36px
+	margin: 20px 40px;
+}
+.left-list {
+	display: block;
+	color: #333;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 20px;
+}
+
+#main-right {
+	display: inline-block;
+	float: right;
+	width: 730px;
+/*	border: 1px solid black;
+*/}
+#right-top {
+	width: 100%;
+	height: 70px;
+	border-bottom: 1px solid #ddd;
+	z-index: 1;
+}
+.right-list {
+	display: inline-block;
+	color: #999999;
+	line-height: 66px;
+	margin: 2px 0;
+	padding: 0 20px;
+	cursor: pointer;
+}
+.right-list-ACTIVE {
+	border-bottom: 2px solid #ff0000;
+	color: #000000;
+}
+#right-top span {
+	background: #eeeeee;
+	border-radius: 7px;
+	color: #666666;
+	font-size: 13px;
+	padding: 1px 5px;
+	margin: 3px;
+	z-index: 1;
+}
+.right-main {
+	width: 100%;
+	height: 1000px;
+	display: none;
+}
+.right-main-ACTIVE {
+	display: block;
+}
+.rm-title {
+	font-size: 16px;
+	line-height: 26px;
+	margin-top: 20px;
+}
+.ov-repo {
+	display: inline-block;
+	overflow: hidden;
+	width: 350px;
+	height: 140px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #dddddd;
+	border-radius: 3px;
+	margin-right: 12px;
+	margin-top: 12px;
+}
+.repo-name, .fo-name {
+	display: block;
+	font-size: 16px;
+	margin-top: 15px;
+	padding: 5px 20px 0;
+	color: #4078c0;
+	text-decoration: none;
+}
+.repo-bo {
+	margin-top: 68px;
+	padding: 0 20px;
+	height: 20px;
+}
+.lang-c, .lang-s, .lang-t, .lang-m{
+	background: red;
+	height: 14px;
+	width: 14px;
+	float: left;
+	border-radius: 7px;
+}
+.lang-s, .lang-t, .lang-m {
+	background: lightskyblue;
+	margin-left: 20px;
+}
+.lang-t {
+	background: orange;
+}
+.lang-m {
+	background: green;
+}
+.repo-cuntri, .fo-countri {
+	position: absolute;
+	display: block;
+	width: 320px;
+	margin-top: 10px;
+	padding: 0 20px;
+	color: #999;
+	font-size: 14px;
+	line-height: 18px;
+}
+.repo-lang, .repo-star, .fo-group, .fo-add, .star-st, .star-fork, .star-update, .star-lang {
+	float: left;
+	line-height: 14px;
+	display: inline-block;
+	padding: 0 0 0 5px;
+	color: #888;
+}
+
+.rl-repo, .st-star, .fo-main {
+	padding: 5px;
+	border-bottom: 1px solid #eee;
+}
+.rl-repo .repo-name, .fo-name {
+	font-size: 20px;
+	font-weight: bold;
+}
+.rl-repo .repo-cuntri, .fo-countri {
+	position: relative;
+	width: 700px;
+}
+.rl-repo .repo-bo, .fo-bo {
+	margin-top: 20px;
+}
+
+.star-st, .star-lang, .star-fork, .star-update {
+	float: left;
+	padding: 0 10px;
+}
+
+
+/*followers模块*/
+.fo-top {
+	display: block;width: 100%;
+	height: 32px;
+	margin: 0;
+	padding: 0;
+}
+.fo-name {
+	margin-top: 0;
+	padding-top: 0;
+	line-height: 35px;
+	float: left;
+}
+.fo-login {
+	color: #666;
+	width: 400px;
+	line-height: 35px;
+	float: left;
+}
+.fo-bo {
+	width: 500px;
+	height: 20px;
+	padding: 0 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
