@@ -29,6 +29,9 @@ MenterInput(topInp, function() {
 		Mselect("#repos").innerHTML = "";
 		Mselect("#stars").innerHTML = "";
 		Mselect("#org").innerHTML = "";
+		Mselect("#left-ul").innerHTML = "";
+		Mselect("#fers").innerHTML = "";
+		Mselect("#fing").innerHTML = "";
 
 
 		_mainShow.style.opacity = 0;
@@ -37,20 +40,22 @@ MenterInput(topInp, function() {
 		_mainCover.style.zIndex = 10;
 
 
-		MAjaxGET(user, "https://api.github.com/users/" + topInp.value, function() {
+		MAjaxGETSearch(user, "https://api.github.com/users/" + topInp.value, function() {
 			u = JSON.parse(user.responseText);
 			// for (j in u) {
-			// 	alert("xx");
-			// 	if (u.j == null) {
-			// 		alert("xxxx");
-			// 		u.j = "To be filled~";
+			// 	if (!j) {
+			// 		function x(a) {
+			// 			alert("xxxx");
+			// 			a = "To be filled~";
+			// 		}
+			// 		x(j);
 			// 	}
 			// }
 			document.title = u.login + "(" + u.name + ")";
-			Mselect("#company").innerHTML = u.company;
-			Mselect("#location").innerHTML = u.location;
-			Mselect("#email").innerHTML = u.email;
-			Mselect("#blog").innerHTML = u.blog;
+			if (u.company) {Mselect("#left-ul").innerHTML += "<li><div class=\"lang-t\"></div>" + u.company + "</li>"};
+			if (u.location) {Mselect("#left-ul").innerHTML += "<li><div class=\"lang-s\"></div>" + u.location + "</li>"};
+			if (u.email) {Mselect("#left-ul").innerHTML += "<li><div class=\"lang-m\"></div>" + u.email + "</li>"}; 
+			if (u.blog) {Mselect("#left-ul").innerHTML += "<li><div class=\"lang-u\"></div>" + u.blog + "</li>"};
 			Mselect("#name").innerHTML = u.name;
 			Mselect("#login").innerHTML = u.login;
 			Mselect("#left-img").src = u.avatar_url;
@@ -66,6 +71,8 @@ MenterInput(topInp, function() {
 			else {
 				alert("出错了，请输入正确格式的账号！");
 			}
+			_mainCover.style.opacity = 0
+			_mainShow.style.display = "block";
 		});
 	}
 });
@@ -165,6 +172,7 @@ function AjaxFers() {
 				MselectAll(".fo-countri")[a].innerHTML = JfersAll[a].bio;
 				MselectAll(".fo-group")[a].innerHTML = JfersAll[a].company;
 				MselectAll(".fo-add")[a].innerHTML = JfersAll[a].location;
+				MselectAll(".fo-name")[a].href = JfersAll[a].html_url;
 			})
 		}
 	}
@@ -175,12 +183,12 @@ function AjaxFers() {
 
 
 function AjaxFing() {
-	for (var i = Jfers.length - 1; i >= 0; i--) {
+	for (var i = Jfing.length - 1; i >= 0; i--) {
 		fingAll[i] = new XMLHttpRequest;
 		JfingAll[i] = Object();
 	}
 	for (var i = Jfing.length - 1; i >= 0; i--) {
-		Mselect("#fing").innerHTML += "<div class=\"fo-main\"><div class=\"fo-mcover\"><img class=\"fo-img\"></img></div><div class=\"fo-top\"><div class=\"fo-name\">fdasfsaf</div><div class=\"fo-login\"></div></div><div class=\"fo-countri\"></div><div class=\"fo-bo\"><div class=\"lang-c\"></div><div class=\"fo-group\"></div><div class=\"lang-t\"></div><div class=\"fo-add\"></div></div></div>"
+		Mselect("#fing").innerHTML += "<div class=\"fo-main\"><div class=\"fo-mcover\"><img class=\"fo-img\"></img></div><div class=\"fo-top\"><a class=\"fo-name\">fdasfsaf</a><div class=\"fo-login\"></div></div><div class=\"fo-countri\"></div><div class=\"fo-bo\"><div class=\"lang-c\"></div><div class=\"fo-group\"></div><div class=\"lang-t\"></div><div class=\"fo-add\"></div></div></div>"
 	}
 	Mindex(Jfing);
 	for (var i = Jfing.length - 1; i >= 0; i--) {
@@ -193,6 +201,7 @@ function AjaxFing() {
 				MselectAll("#fing .fo-countri")[a].innerHTML = JfingAll[a].bio;
 				MselectAll("#fing .fo-group")[a].innerHTML = JfingAll[a].company;
 				MselectAll("#fing .fo-add")[a].innerHTML = JfingAll[a].location;
+				MselectAll("#fing .fo-name")[a].href = JfingAll[a].html_url;
 			})
 		}
 	}
@@ -200,67 +209,6 @@ function AjaxFing() {
 		Jfing[i].getUrl(i);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 三级Ajax－Followers
-// function AjaxFing() {
-	// for (var i = Jfers.length - 1; i >= 0; i--) {
-	// 	fersAll[i] = new XMLHttpRequest;
-	// 	JfersAll[i] = Object();
-	// }
-// 	Mindex(fersAll);
-// 	Mindex(JfersAll);
-// 	for (var i = fersAll.length - 1; i >= 0; i--) {
-// 		var j = i;
-// 		fersAll[j].open("GET", Jfers[j].url, true);
-// 		fersAll[j].onreadystatechange = function() {
-// 			if (fersAll[j].readyState == 4) {
-// 				// alert(j);
-// 			}
-// 		}
-// 		fersAll[j].send();
-// 	}
-// 	for (var i = fersAll.length - 1; i >= 0; i--) {
-// 		var m = i;
-// 		JfersAll[m] = JSON.parse(fersAll[m].responseText);
-// 	}
-
-
-
-
-// 	// if (fersAll[j].) {}
-// 	// for (var i = fersAll.length - 1; i >= 0; i--) {
-// 	// 	var j = fersAll[i].index;
-// 	// 	JfersAll[j] = JSON.parse(fersAll[j].response);
-// 	// }
-// 	// for (var i = JfersAll.length - 1; i >= 0; i--) {
-// 	// 	JfersAll[i] = JSON.parse(JfersAll[i].responseText);
-// 	// }
-// 	for (var i = JfersAll.length - 1; i >= 0; i--) {
-// 		MselectAll("#fers .fo-name")[i] = JfersAll[i].name;
-// 	}
-// }
-
-
-
 
 
 

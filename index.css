@@ -28,6 +28,7 @@ header {
 	height: 30px;
 	outline: none;
 	background: #393e41;
+	border: 10px solid black;
 	color: #fff;
 	border-radius: 3px;
 	border: none;
@@ -118,6 +119,16 @@ header {
 }
 #left-ul li {
 	overflow: hidden;
+	width: 100%;
+	text-overflow:ellipsis;
+	display: block;
+	color: #333;
+	height: 15px;
+	margin: 15px 0;
+	line-height: 15px;
+}
+#left-ul li div{
+	margin-right: 10px;
 }
 #org {
 	font-size: 20px;
@@ -130,14 +141,6 @@ header {
 	height: 36px
 	margin: 20px 40px;
 }
-.left-list {
-	display: block;
-	color: #333;
-	height: 30px;
-	line-height: 30px;
-	padding-left: 20px;
-}
-
 #main-right {
 	display: inline-block;
 	float: right;
@@ -209,14 +212,14 @@ header {
 	padding: 0 20px;
 	height: 20px;
 }
-.lang-c, .lang-s, .lang-t, .lang-m{
+.lang-c, .lang-s, .lang-t, .lang-m, .lang-u{
 	background: red;
 	height: 14px;
 	width: 14px;
 	float: left;
 	border-radius: 7px;
 }
-.lang-s, .lang-t, .lang-m {
+.lang-s, .lang-t, .lang-m, .lang-u {
 	background: lightskyblue;
 	margin-left: 20px;
 }
@@ -225,6 +228,9 @@ header {
 }
 .lang-m {
 	background: green;
+}
+.lang-u {
+	background: purple;
 }
 .repo-cuntri, .fo-countri {
 	position: absolute;
@@ -281,6 +287,7 @@ header {
 	width: 50px;
 	height: 50px;
 	border-radius: 3px;
+	z-index: -1;
 }
 .fo-mcover {
 	position: relative;
@@ -288,6 +295,7 @@ header {
 	left: 0;
 	width: 60px;
 	margin-right: 10px;
+	z-index: -1;
 }
 .fo-top {
 	display: block;
@@ -307,6 +315,7 @@ header {
 /*	width: 400px;
 */	line-height: 35px;
 	float: left;
+	margin-left: 20px;
 }
 .fo-bo {
 	width: 500px;

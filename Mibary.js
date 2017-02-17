@@ -27,7 +27,7 @@ function MAjax(a, b, c) {
 
 
 // 高度封装版Ajax-Get
-function MAjaxGET(a, b, c, d) {
+function MAjaxGETSearch(a, b, c, d) {
 	a.open("GET", b, true);
 	a.onreadystatechange = function() {
 		if (a.readyState == 4) {
@@ -43,9 +43,23 @@ function MAjaxGET(a, b, c, d) {
 	return true;
 }
 
+// 不查错
+function MAjaxGET(a, b, c) {
+	a.open("GET", b, true);
+	a.onreadystatechange = function() {
+		if (a.readyState == 4) {
+			if (a.status == 200 || a.status == 304) {
+				c();
+			}
+		}
+	}
+	a.send();
+	return true;
+}
+
 
 // 高度封装版Ajax－POST
-function MAjaxPOST(a, b, c, d) {
+function MAjaxPOST(a, b, c) {
 	a.open("POST", b, true);
 	a.onreadystatechange = function() {
 		if (a.readyState == 4 && (a.status == 200 || a.status == 304)) {
